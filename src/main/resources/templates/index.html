@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" href="../../static/bootstrap/css/bootstrap.min.css"
+        th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <style>
+        #img{
+            position: relative;
+            z-index: -999;
+        }
+        #mid{
+            position: relative;
+            z-index: 1;
+            margin-top: -10px;
+        }
+        .box {
+            width: 933px;
+            height: 128px;
+        }
+
+        .box .card {
+            position: fixed;
+            width: 943px;
+            height: 128px;
+            top: 0;
+            left: 0;
+        }
+
+        .box .overlap-group {
+            position: relative;
+            width: 933px;
+            height: 128px;
+            background-color: #ffffff;
+            border-radius: 18px;
+            box-shadow: 6px 5px 7px #00000012;
+        }
+
+        .box .line {
+            top: 20px;
+            left: 609px;
+            position: absolute;
+            width: 1px;
+            height: 87px;
+            object-fit: cover;
+        }
+
+        .box .img {
+            top: 26px;
+            left: 268px;
+            position: absolute;
+            width: 1px;
+            height: 87px;
+            object-fit: cover;
+        }
+
+        .text-wrapper {
+            position: relative;
+            text-align: center;
+            font-family: "Inter-Medium", Helvetica;
+            font-weight: 500;
+            color: #000000;
+            font-size: 22px;
+            letter-spacing: 0;
+            line-height: normal;
+            white-space: nowrap;
+        }
+
+        .div {
+            position: relative;
+            text-align: center;
+            font-family: "Inter-Medium", Helvetica;
+            font-weight: 500;
+            color: #000000;
+            font-size: 13px;
+            letter-spacing: 0;
+            line-height: normal;
+        }
+
+        .box .p {
+            position: absolute;
+            top: 64px;
+            left: 295px;
+            font-family: "Inter-Medium", Helvetica;
+            font-weight: 500;
+            color: #000000;
+            font-size: 13px;
+            letter-spacing: 0;
+            line-height: normal;
+        }
+
+        .box .text-wrapper-2 {
+            position: absolute;
+            top: 23px;
+            left: 340px;
+            font-family: "Inter-Medium", Helvetica;
+            font-weight: 500;
+            color: #000000;
+            font-size: 26px;
+            letter-spacing: 0;
+            line-height: normal;
+            white-space: nowrap;
+        }
+
+        .text-wrapper-3 {
+            position: absolute;
+            font-family: "Inter-Bold", Helvetica;
+            font-weight: 500;
+            top: 50%;
+            transform: translate(0, -50%);
+            font-size: 22px;
+            letter-spacing: 0;
+            line-height: normal;
+            white-space: nowrap;
+        }
+
+        .book-now-button {
+            width: 91px;
+            height: 64px;
+            background-color: #2e70ef;
+            border-radius: 20px;
+        }
+
+        .box .arrow {
+            position: absolute;
+            width: 35px;
+            height: 29px;
+            top: 16px;
+            left: 27px;
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="container-fluid">
+  <div class="container">
+    <img id="img" style="border-radius: 16px" src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fEhvdGVsfGVufDB8fDB8fHww" alt="no" width="100%" height="300px">
+    <div id="mid" style="background-color: white;box-shadow: 4px 4px 2px 1px ghostwhite;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px; border-radius: 16px" class="row" >
+        <div class="col-md-4" style="padding: 15px">
+            <div class="text-wrapper mt-2">Rooms</div>
+            <p class="div mt-2">22 are rooms are available</p>
+        </div>
+        <div class="col-md-4" style="padding: 15px">
+            <div class="text-wrapper mt-2">Exclusive Selection</div>
+            <p class="div mt-2"> Luxury awaits in our rooms.</p>
+        </div>
+        <div class="col-md-4" style="padding: 15px">
+            <div class="text-wrapper-3 col-md-3 btn btn-primary">Book Now</div>
+        </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

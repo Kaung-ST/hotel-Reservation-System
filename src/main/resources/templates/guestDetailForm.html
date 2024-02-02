@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html th:replace="layout/masterLayout :: layout(~{::main})" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main role="main">
+  <div class="container mt-2">
+    <a th:href="@{'/guest-detail/history?email='+${#authentication.name}}" class="btn btn-outline-dark">Your History</a>
+  </div>
+  <div th:each="reservation:${reservations}">
+    <div class="container  p-3">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-header">
+              <h3>Room Details</h3>
+            </div>
+            <div class="card-body">
+<!--              <div th:if="${errorMessage}" class="alert alert-danger" role="alert">-->
+<!--                <span th:text="${errorMessage}"></span>-->
+<!--              </div>-->
+              <div th:if="${reservation}">
+                <div class="row">
+                  <div class="col-md-4">
+                    <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="200" height="250" class="card-img-top p-2" alt="">
+                  </div>
+                  <div class="col-md-8 mt-2">
+                    <div class="row mb-2">
+                      <div class="col">
+                        <div class="row">
+                          <div class="col-md-3">
+                            <label style="font-weight: bold">Reservation ID:</label>
+                          </div>
+                          <div class="col-md-10">
+                            <lavel th:text="${reservation.id}"></lavel>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mb-2">
+                      <div class="col-md-5">
+                        <div class="row">
+                          <div class="col">
+                            <label style="font-weight: bold"> Name:</label>
+                          </div>
+                          <div class="col">
+                            <label th:text="${reservation.guest.firstName}"></label>
+                            <label th:text="${reservation.guest.lastName}"></label>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mb-2">
+                      <div class="col-md-5">
+                        <div class="row">
+                          <div class="col">
+                            <label style="font-weight: bold">Room Name:</label>
+                          </div>
+                          <div class="col">
+                            <label th:text="${reservation.room.name}"></label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mb-2">
+                      <div class="col-md-5">
+                        <div class="row">
+                          <div class="col">
+                            <label style="font-weight: bold">Section:</label>
+                          </div>
+                          <div class="col">
+                            <label th:text="${reservation.room.section}"></label>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="row mb-2">
+                      <div class="col-md-5">
+                        <div class="row">
+                          <div class="col">
+                            <label style="font-weight: bold">Date:</label>
+                          </div>
+                          <div class="col">
+                            <lavel th:text="${reservation.getReservationDate()}"></lavel>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mb-2">
+                      <div class="col mt-2">
+                        <a th:href="@{'/auth/cancel?id='+${reservation.id}+'&email='+${#authentication.name}}" class="btn btn-outline-danger ">Cancel Booking</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+</body>
+</html>

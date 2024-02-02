@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html th:replace="layout/masterLayout :: layout(~{::main})" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main role="main">
+    <div class="container mt-5">
+        <div class="mb-2 p-2">
+            <a th:href="@{'/guest-detail?email='+${#authentication.name}}" class="btn btn-dark">Back to Room Detail</a>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Details History</h3>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Date</th>
+                            <th>Room Name</th>
+                            <th>Room Section</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>State</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr  th:each="res : ${reservations}">
+                            <td th:text="${res.id}"></td>
+                            <td th:text="${res.getReservationDate()}"></td>
+                            <td th:text="${res.getRoom().name}"></td>
+                            <td th:text="${res.getRoom().section}"></td>
+                            <td th:text="${res.guest.firstName}"></td>
+                            <td th:text="${res.guest.lastName}"></td>
+                            <td class="text-success">
+                                BOOKING_SUCCESSFUL
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

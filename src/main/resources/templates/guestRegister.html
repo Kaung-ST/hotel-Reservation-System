@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html th:replace="layout/masterLayout :: layout(~{::main})" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<body>
+<main role="main">
+  <div class="container mt-3 p-5">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <h3>Room Reserve</h3>
+          </div>
+
+          <div class="card-body">
+            <div sec:authorize="!isAuthenticated()">
+              <form th:action="@{/auth/room-register}" th:object="${guest}" method="post">
+                <div class="row">
+                  <div class="col">
+                    <div class="mb-3">
+                      <label class="form-label">Room Name</label>
+                      <input type="text"
+                             th:value="${roomName}"
+                             name="name"
+                             class="form-control" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                      <label class="form-label">FirstName</label>
+                      <input type="text"
+                             name="fname"
+                             class="form-control">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">LastName</label>
+
+                      <input type="text"
+                             name="lname"
+                             class="form-control">
+                    </div>
+
+
+                    <div class="mb-3">
+                      <label class="form-label">Email</label>
+                      <input type="text"
+                             name="email"
+                             class="form-control">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Password</label>
+                      <input type="text"
+                             name="pass"
+                             class="form-control">
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Date</label>
+                    <input type="date"
+                           name="date"
+                           th:value="${getDate}"
+                           class="form-control" readonly>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <input type="submit" class="btn btn-primary" value="Register">
+                    <a th:href="@{/login}" class="btn btn-outline-primary">Login</a>
+                  </div>
+                </div>
+
+                <div sec:authorize="isAuthenticated()">
+                </div>
+              </form>
+            </div>
+            <div sec:authorize="isAuthenticated()">
+              <form th:action="@{/auth/reserve-room}" th:object="${guest}" method="post">
+                <div class="row">
+                  <div class="col">
+                    <div class="mb-3">
+                      <label class="form-label">Room Name</label>
+                      <input type="text"
+                             th:value="${roomName}"
+                             name="name"
+                             class="form-control" readonly>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Date</label>
+                    <input type="date"
+                           name="date"
+                           th:value="${getDate}"
+                           class="form-control" readonly>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="text"
+                           name="email"
+                           th:value="${email}"
+                           class="form-control" readonly>
+                  </div>
+                </div>
+                <input type="submit" class="btn btn-primary" value="Book Now">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html th:replace="layout/masterLayout :: layout(~{::main})" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main role="main">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col">
+                <form th:action="@{/room/search-date}" method="get">
+                    <div class="row">
+                        <div class="col-md-8 mb-3">
+                            <input type="date"
+                                   th:value="${getDate != null} ? ${getDate} : ${currentDate}"
+                                   name="date"
+                                   class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <input type="submit" value="Search" class="btn btn-primary">
+                        </div>
+                    </div>
+                </form>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Rooms</h3>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Room</th>
+                            <th>Section</th>
+                            <th>Booked</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr  th:each="room : ${rooms}">
+                            <td th:text="${room.id}"></td>
+                            <td th:text="${room.name}"></td>
+                            <td th:text="${room.section}"></td>
+                            <td th:text="${roomStatusMap[room.name]}"></td>
+                            <td>
+                                <a th:href="@{'/room/cancel?id='+${room.id}+'&date='+${getDate}}" class="btn btn-outline-danger"
+                                   th:unless="${roomStatusMap[room.name] == 'Available'}"
+                                >Cancel</a>
+                                <a th:href="@{'/room/room-reserve?name='+${room.name} +'&date='+${getDate}}" class="btn btn-primary"
+                                   th:unless="${roomStatusMap[room.name] == 'Booked'}"
+                                >Reserve</a>
+                                <a th:href="@{'/room/detail?date='+${getDate}+'&id='+${room.id}}"
+                                   th:hidden="${roomStatusMap[room.name] == 'Available'}" class="btn btn-outline-info">Detail</a>
+                            </td>
+                        </tr>
+                    </table>
+                    <a th:href="@{/room/room-save}" class="btn btn-primary mb-5">
+                        Create Room
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>
