@@ -4,7 +4,8 @@
 <body>
 <main role="main">
   <div class="container mt-2">
-    <a th:href="@{'/guest-detail/history?email='+${#authentication.name}}" class="btn btn-outline-dark">Your History</a>
+    <a th:href="@{'/guest-detail/history?email='+${#authentication.name}}"
+       class="btn btn-outline-dark w-100"><i class="fa-solid fa-clock-rotate-left me-3"></i>Your History</a>
   </div>
   <div th:each="reservation:${reservations}">
     <div class="container  p-3">
@@ -12,7 +13,7 @@
         <div class="col">
           <div class="card">
             <div class="card-header">
-              <h3>Room Details</h3>
+              <h3>Room Detail</h3>
             </div>
             <div class="card-body">
 <!--              <div th:if="${errorMessage}" class="alert alert-danger" role="alert">-->
@@ -82,14 +83,15 @@
                             <label style="font-weight: bold">Date:</label>
                           </div>
                           <div class="col">
-                            <lavel th:text="${reservation.getReservationDate()}"></lavel>
+                            <label style="font-weight: bold" th:text="${reservation.getReservationDate()}"></label>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class="row mb-2">
                       <div class="col mt-2">
-                        <a th:href="@{'/auth/cancel?id='+${reservation.id}+'&email='+${#authentication.name}}" class="btn btn-outline-danger ">Cancel Booking</a>
+                        <a th:href="@{'/auth/cancel?id='+${reservation.id}+'&email='+${#authentication.name}}" class="btn btn-outline-danger " style="width: 300px">
+                          <i class="fa-regular fa-circle-xmark me-3"></i>Cancel Booking</a>
                       </div>
                     </div>
                   </div>

@@ -2,6 +2,8 @@ package com.example.hotelbookingassignment.controller;
 
 import com.example.hotelbookingassignment.ds.Guest;
 import com.example.hotelbookingassignment.ds.Reservation;
+import com.example.hotelbookingassignment.ds.Role;
+import com.example.hotelbookingassignment.ds.Room;
 import com.example.hotelbookingassignment.repository.GuestRepository;
 import com.example.hotelbookingassignment.repository.ReservationRepository;
 import com.example.hotelbookingassignment.service.*;
@@ -108,11 +110,40 @@ public class GuestController {
         model.addAttribute("errorMessage","not found");
         return "historyForm";
     }
-
-    public String createBookSpecificRoom(@RequestParam("name")String name,
-                                         @RequestParam("email")String email,
+    @GetMapping("/auth/reserve-quick")
+    public String  quickBookingForm(Model model){
+        return "quickBookingForm";
+    }
+    @GetMapping("/reserve-quick/date")
+    public String  quickBookingForm(@RequestParam("date")LocalDate date,
+                                   Model model){
+        Optional<Room>roomOptional=bookingService.findAvailableRoom(date);
+        if(roomOptional.isPresent()){
+            Room room =roomOptional.get();
+            model.addAttribute("roomName",room.getName());
+            model.addAttribute("date",date);
+        }else {
+            System.out.println("No guest found with the email nono@gmail");
+        }
+        return "quickBookingForm";
+    }
+@PostMapping("/auth/quick-reserve")
+    public String quickBooking(@RequestParam("email")String email,
                                          @RequestParam("date")LocalDate date){
-
-        return "specificRoomForm";
+        Optional<Guest> guestOptional = guestRepository.findGuestByEmail(email);
+        if(guestOptional.isPresent()){
+           Guest guest= guestOptional.get();
+            applicationService.bookAnyRoomForRegisteredGuest(guest,date);
+        }else {
+            System.out.println("No guest found with the email nono@gmail");
+        }
+        return "redirect:/guest-detail?email=" + email;
+    }
+    @PostMapping("/guest/quick-reserve")
+    public String quickBookingQuest(@RequestParam("fname")String fname,
+                               @RequestParam("lname")String lname,
+                               @RequestParam("date")LocalDate date){
+            applicationService.bookAnyRoomForNewGuest(fname,lname,date);
+        return "redirect:/room-list/date?date="+date;
     }
 }

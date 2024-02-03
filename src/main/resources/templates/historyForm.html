@@ -5,7 +5,8 @@
 <main role="main">
     <div class="container mt-5">
         <div class="mb-2 p-2">
-            <a th:href="@{'/guest-detail?email='+${#authentication.name}}" class="btn btn-dark">Back to Room Detail</a>
+            <a th:href="@{'/guest-detail?email='+${#authentication.name}}" class="btn btn-dark w-auto">
+                <i class="fa-solid fa-chevron-left me-3"></i>Back to Room Detail</a>
         </div>
         <div class="row">
             <div class="col">

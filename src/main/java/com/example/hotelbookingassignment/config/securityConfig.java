@@ -46,23 +46,28 @@ public class securityConfig {
         });
 
         http.authorizeHttpRequests( a -> {
-            a.requestMatchers("/bootstrap/**","/images/**", "/","/home/**","/date/**","/room-list/**","/register-room/**","/auth/**","/room-register","/guest-detail/**")
+            a.requestMatchers("/bootstrap/**","/images/**", "/","/home/**",
+                            "/date/**","/room-list/**","/register-room/**",
+                            "/auth/**","/room-register","/reserve-quick/**","/guest/**",
+                            "/fontawesome/**",
+                            "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/**")
                     .permitAll()
+                    .requestMatchers("/guest-detail/**").hasRole("USER")
                     .requestMatchers("/room/**").hasRole("ADMIN")
                     .anyRequest().authenticated();
         });
         http.csrf( c -> c.disable());
         return http.build();
     }
-    @Bean
-    public UserDetailsService userDetailsService(){
-        var uds=new InMemoryUserDetailsManager();
-        var john= User.withUsername("john")
-                .password("john")
-                .roles("ADMIN").build();
-        uds.createUser(john);
-        return uds;
-    }
+//    @Bean
+//    public UserDetailsService userDetailsService(){
+//        var uds=new InMemoryUserDetailsManager();
+//        var john= User.withUsername("john")
+//                .password("john")
+//                .roles("ADMIN").build();
+//        uds.createUser(john);
+//        return uds;
+//    }
 //    @Bean
 //    public SecurityFilterChain securityFilterChain(HttpSecurity http)
 //            throws Exception {

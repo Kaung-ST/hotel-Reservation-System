@@ -21,7 +21,8 @@
       <p class="div mt-2"> Luxury awaits in our rooms.</p>
      </div>
      <div class="col-md-4" style="padding: 15px">
-      <a class="text-wrapper-3 col-md-3 btn btn-primary" th:href="@{'/room-list/date?date=' + ${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}}">Book Now <i class="far fa-arrow-circle-right"></i></a>
+      <a class="text-wrapper-3 col-md-3 btn btn-primary" th:href="@{'/room-list/date?date=' + ${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}}">
+       Book Now <i class="fa-solid fa-paper-plane"></i></a>
      </div>
     </div>
    </div>

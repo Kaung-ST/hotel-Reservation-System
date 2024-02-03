@@ -9,11 +9,13 @@
                     <div class="row mb-3">
 
                         <div class="col-md-2">
-                            <a href="#" class="btn btn-success">Quick Booking</a>
+                            <a th:href="@{/auth/reserve-quick}" class="btn btn-outline-primary w-100 rounded-3">
+                                <i class="fa-solid fa-gauge-simple-high me-2"></i>Quick Booking</a>
                         </div>
 
-                        <div class="col-md-2" sec:authorize="isAuthenticated()">
-                            <a href="#" class="btn btn-outline-success">Book Specific Room</a>
+                        <div class="col-md-3" sec:authorize="isAuthenticated()">
+                            <a href="#" class="btn btn-outline-success">
+                                <i class="fa-solid fa-magnifying-glass me-2"></i>Book Specific Room</a>
                         </div>
 
                     </div>
@@ -36,15 +38,21 @@
                             <div class="card mb-3" style="width: 18rem">
                                 <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="200" height="150" class="card-img-top" alt="">
                                 <div class="card-body">
-                                    <p class="lead card-title"  style="font-weight: bold" th:text="${room.name}"></p>
-                                    <p class="lead card-text" style="font-size: medium" th:text="${'Room Section : '+room.section}"></p>
+                                  <div class="lead card-title" >
+                                      <i class="fa-solid fa-bed me-2"></i>
+                                      <label  style="font-weight: bold" th:text="${room.name}"></label>
+                                  </div>
+                                   <div class="mb-3">
+                                       <i class="fa-solid fa-map-location"></i>
+                                       <label class="lead card-text ms-2" style="font-size: medium" th:text="${'Room Section : '+room.section}"></label>
+                                   </div>
                                     <div sec:authorize="!isAuthenticated()">
-                                    <a class="btn btn-primary" th:href="@{'/auth/register-room?name='+${room.name}+'&date='+${getDate}}"
-                                            th:unless="${roomStatusMap[room.name] == 'Booked'}" > Reserve</a>
+                                    <a class="btn btn-primary w-100 "  th:href="@{'/auth/register-room?name='+${room.name}+'&date='+${getDate}}"
+                                            th:unless="${roomStatusMap[room.name] == 'Booked'}" ><i class="fa-solid fa-door-open"></i> Book Now</a>
                                     </div>
                                     <div sec:authorize="isAuthenticated()">
-                                        <a class="btn btn-primary" th:href="@{'/auth/register-room-auth?name='+${room.name}+'&date='+${getDate}+'&email='+ ${#authentication.name}}"
-                                           th:unless="${roomStatusMap[room.name] == 'Booked'}" > Reserve</a>
+                                        <a class="btn btn-primary w-100 " th:href="@{'/auth/register-room-auth?name='+${room.name}+'&date='+${getDate}+'&email='+ ${#authentication.name}}"
+                                           th:unless="${roomStatusMap[room.name] == 'Booked'}" ><i class="fa-solid fa-door-open"></i> Book Now</a>
                                     </div>
                                     <span
                                           th:unless="${roomStatusMap[room.name] == 'Available'}"
