@@ -23,15 +23,15 @@ import java.util.UUID;
 @SpringBootApplication
 @RequiredArgsConstructor
 public class HotelBookingAssignmentApplication {
-    private final GuestRegistrationService guestRegistrationService;
-    private final BookingService bookingService;
-    private final RoomRepository roomRepository;
-    private  final ReservationRepository reservationRepository;
-    private final ApplicationService applicationService;
-    private final RoleRepository roleRepository;
-    private final AuthService authService;
-    private final GuestRepository guestRepository;
-    private final GuestService guestService;
+//    private final GuestRegistrationService guestRegistrationService;
+//    private final BookingService bookingService;
+//    private final RoomRepository roomRepository;
+//    private  final ReservationRepository reservationRepository;
+//    private final ApplicationService applicationService;
+//    private final RoleRepository roleRepository;
+//    private final AuthService authService;
+//    private final GuestRepository guestRepository;
+//    private final GuestService guestService;
 
     public static void main(String[] args) {
         SpringApplication.run(HotelBookingAssignmentApplication.class, args);

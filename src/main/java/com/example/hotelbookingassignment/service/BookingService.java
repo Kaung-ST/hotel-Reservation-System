@@ -31,7 +31,6 @@ public class BookingService {
                 .filter(room -> isRoomAvailableAtDate(room, date))
                 .collect(Collectors.toSet());
     }
-
     public Optional<Reservation> bookRoom(String roomName, Guest guest, LocalDate date) {
         Optional<Room> room = roomRepository.findByName(roomName);
         return room.map(r -> bookRoom(r, guest, date))

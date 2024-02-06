@@ -53,48 +53,11 @@ public class securityConfig {
                             "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/**")
                     .permitAll()
                     .requestMatchers("/guest-detail/**").hasRole("USER")
-                    .requestMatchers("/room/**").hasRole("ADMIN")
+                    .requestMatchers("/room/**" ,"/guest-detail/**").hasRole("ADMIN")
                     .anyRequest().authenticated();
         });
         http.csrf( c -> c.disable());
         return http.build();
     }
-//    @Bean
-//    public UserDetailsService userDetailsService(){
-//        var uds=new InMemoryUserDetailsManager();
-//        var john= User.withUsername("john")
-//                .password("john")
-//                .roles("ADMIN").build();
-//        uds.createUser(john);
-//        return uds;
-//    }
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http)
-//            throws Exception {
-//        http.formLogin(c -> c.loginPage("/login")
-//                .permitAll());
-//        http.logout(c -> c.logoutUrl("/logout")
-//                .logoutSuccessUrl("/login").permitAll())
-//        http.authorizeHttpRequests(c->
-//                c.requestMatchers("/bootstrap/**","/images/**", "/","/home/**","/date/**","/room-list/**").permitAll()
-//                        .requestMatchers("/room/**").hasRole("ADMIN")
-//                        .anyRequest().authenticated()
-//
-//        );
-//        http.csrf(c -> c.disable());
-//        return http.build();
-//    }
-//    @Bean
-//    public UserDetailsService userDetailsService(){
-//        var uds=new InMemoryUserDetailsManager();
-//        var john= User.withUsername("john")
-//                .password("john")
-//                .roles("ADMIN").build();
-//            uds.createUser(john);
-//            return uds;
-//    }
-//    @Bean
-//    public PasswordEncoder passwordEncoder(){
-//     return NoOpPasswordEncoder.getInstance();
-//    }
+
 }

@@ -14,6 +14,7 @@
 
           <div class="card-body">
             <div>
+              <div sec:authorize="isAuthenticated()">
               <form th:action="@{/reserve-quick/date}" method="get">
                 <div class="row mb-3 mt-2">
                   <label class="form-label">Date</label>
@@ -28,6 +29,7 @@
                   </div>
                 </div>
               </form>
+              </div>
             </div>
             <div sec:authorize="isAuthenticated()">
               <form th:action="@{/auth/quick-reserve}" method="post">
@@ -37,55 +39,61 @@
                             th:value="${date}" hidden="hidden">
                    </div>
                     <div class="mb-3">
-                      <label class="form-label">Room Name</label>
+                      <i class="fa-solid fa-bed me-3"></i>
+                      <label class="form-label" th:text="${roomName != null}? ${roomName} : '??'">Room Name</label>
                       <input type="text"
                              th:value="${roomName}"
                              name="name"
-                             class="form-control"readonly>
+                             class="form-control" hidden="hidden">
                     </div>
                   <div class="mb-3">
-                    <label class="form-label">Email</label>
+                    <i class="fa-solid fa-user me-3"></i>
+                    <label class="form-label" th:text="${#authentication.name}"></label>
                     <input type="text"
                            name="email"
                            th:value="${#authentication.name}"
-                           class="form-control" readonly>
+                           class="form-control" hidden="hidden">
                   </div>
                   </div>
                 <input type="submit" class="btn btn-primary" value="Book Now">
               </form>
            </div>
             <div sec:authorize="!isAuthenticated()">
-              <form th:action="@{/guest/quick-reserve}" method="post">
-                <div class="row">
-                    <input type="text" name="date"
-                           th:value="${date}" hidden="hidden">
-                  <div class="col">
-                    <div class="row">
-                      <div class="col">
-                        <label class="form-label">First Name</label>
-                        <input type="text"
-                               name="fname"
-                               class="form-control">
-                      </div>
-                      <div class="col">
-                        <label class="form-label">last Name</label>
-                        <input type="text"
-                               name="lname"
-                               class="form-control">
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="mb-3">
-                    <label class="form-label">Room Name</label>
-                    <input type="text"
-                           th:value="${roomName}"
-                           name="name"
-                           class="form-control"readonly>
-                  </div>
-                </div>
-                <input type="submit" class="btn btn-primary" value="Book Now">
-              </form>
+                <p class="alert alert-danger">You can't use this feature right now! Please login to your account.</p>
+<!--                <a th:href="@{/login}" class="btn btn-primary w-100">Login</a>-->
+            </div>
+              </div>
+<!--              <form th:action="@{/guest/quick-reserve}" method="post">-->
+<!--                <div class="row">-->
+<!--                    <input type="text" name="date"-->
+<!--                           th:value="${date}" hidden="hidden">-->
+<!--                  <div class="col">-->
+<!--                    <div class="row">-->
+<!--                      <div class="col">-->
+<!--                        <label class="form-label">First Name</label>-->
+<!--                        <input type="text"-->
+<!--                               name="fname"-->
+<!--                               class="form-control">-->
+<!--                      </div>-->
+<!--                      <div class="col">-->
+<!--                        <label class="form-label">last Name</label>-->
+<!--                        <input type="text"-->
+<!--                               name="lname"-->
+<!--                               class="form-control">-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="mb-3 mt-3">-->
+<!--                    <i class="fa-solid fa-bed me-3"></i>-->
+<!--                    <label class="form-label"style="font-weight: bold" th:text="${roomName != null}? ${roomName} : '??'"></label>-->
+<!--                    <input type="text"-->
+<!--                           th:value="${roomName}"-->
+<!--                           name="name"-->
+<!--                           class="form-control" hidden="hidden">-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <input type="submit" class="btn btn-primary" value="Book Now">-->
+<!--              </form>-->
             </div>
             </div>
           </div>

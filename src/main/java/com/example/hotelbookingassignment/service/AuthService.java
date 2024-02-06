@@ -26,4 +26,13 @@ public class AuthService {
        guest.addRole(role);
        guestRepository.save(guest);
     }
+    @Transactional
+    public void registerAdmin(Guest guest){
+        Role role=roleRepository.findRoleByRoleName("ROLE_ADMIN")
+                .orElseThrow(EntityNotFoundException::new);
+        guest.setPassword(passwordEncoder
+                .encode(guest.getPassword()));
+        guest.addRole(role);
+        guestRepository.save(guest);
+    }
 }

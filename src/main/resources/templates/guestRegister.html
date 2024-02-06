@@ -4,61 +4,78 @@
 
 <body>
 <main role="main">
-  <div class="container mt-3 p-5">
+  <div class="container mt-3 p-3">
     <div class="row">
-      <div class="col">
+      <div class="col-md-5">
+        <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+             style="width: 400px; height: 300px; border-radius: 13px">
+      </div>
+      <div class="col-md-7">
         <div class="card">
           <div class="card-header">
             <h3>Room Reserve</h3>
           </div>
-
           <div class="card-body">
             <div sec:authorize="!isAuthenticated()">
               <form th:action="@{/auth/room-register}" th:object="${guest}" method="post">
                 <div class="row">
                   <div class="col">
                     <div class="mb-3">
-                      <label class="form-label">Room Name</label>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <i class="fa-solid fa-bed me-3"></i>
+                          <label class="form-label"  style="font-weight: bold" th:text="${roomName}"></label>
+                        </div>
+                        <div class="col-md-4">
+                          <i class="fa-solid fa-calendar-days me-3"></i>
+                          <label class="form-label" style="font-weight: bold" th:text="${getDate}">Date</label>
+                        </div>
+                      </div>
                       <input type="text"
                              th:value="${roomName}"
                              name="name"
-                             class="form-control" readonly>
-                    </div>
-
-                    <div class="mb-3">
-                      <label class="form-label">FirstName</label>
-                      <input type="text"
-                             name="fname"
-                             class="form-control">
+                             class="form-control" HIDDEN="hidden">
                     </div>
                     <div class="mb-3">
-                      <label class="form-label">LastName</label>
-
-                      <input type="text"
-                             name="lname"
-                             class="form-control">
+                      <div class="row">
+                        <div class="col">
+                          <label class="form-label">FirstName</label>
+                          <input type="text"
+                                 name="fname"
+                                 class="form-control " >
+                        </div>
+                        <div class="col">
+                          <label class="form-label">LastName</label>
+                          <input type="text"
+                                 name="lname"
+                                 class="form-control">
+                        </div>
+                      </div>
                     </div>
-
-
                     <div class="mb-3">
-                      <label class="form-label">Email</label>
-                      <input type="text"
-                             name="email"
-                             class="form-control">
+                      <div class="row">
+                        <div class="col">
+                          <label class="form-label">Email</label>
+                          <input type="text"
+                                 name="email"
+                                 class="form-control">
+                        </div>
+                        <div class="col">
+                          <label class="form-label">Password</label>
+                          <input type="text"
+                                 name="pass"
+                                 class="form-control">
+                        </div>
+                      </div>
+
                     </div>
-                    <div class="mb-3">
-                      <label class="form-label">Password</label>
-                      <input type="text"
-                             name="pass"
-                             class="form-control">
-                    </div>
+
                   </div>
                   <div class="mb-3">
-                    <label class="form-label">Date</label>
                     <input type="date"
                            name="date"
                            th:value="${getDate}"
-                           class="form-control" readonly>
+                           class="form-control" hidden="hidden">
                   </div>
                 </div>
 
@@ -78,26 +95,29 @@
                 <div class="row">
                   <div class="col">
                     <div class="mb-3">
-                      <label class="form-label">Room Name</label>
+                      <i class="fa-solid fa-bed me-3"></i>
+                      <label class="form-label" style="font-weight: bold" th:text="${roomName}"></label>
                       <input type="text"
                              th:value="${roomName}"
                              name="name"
-                             class="form-control" readonly>
+                             class="form-control" hidden="hidden">
                     </div>
                   </div>
                   <div class="mb-3">
-                    <label class="form-label">Date</label>
+                    <i class="fa-solid fa-calendar-days me-3"></i>
+                    <label class="form-label" style="font-weight: bold" th:text="${getDate}"></label>
                     <input type="date"
                            name="date"
                            th:value="${getDate}"
-                           class="form-control" readonly>
+                           class="form-control" hidden="hidden">
                   </div>
                   <div class="mb-3">
-                    <label class="form-label">Email</label>
+                    <i class="fa-solid fa-user me-3"></i>
+                    <label class="form-label" th:text="${email}"></label>
                     <input type="text"
                            name="email"
                            th:value="${email}"
-                           class="form-control" readonly>
+                           class="form-control" hidden="hidden">
                   </div>
                 </div>
                 <input type="submit" class="btn btn-primary" value="Book Now">

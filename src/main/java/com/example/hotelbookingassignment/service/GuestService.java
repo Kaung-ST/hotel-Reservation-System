@@ -13,8 +13,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class GuestService {
     private final GuestRepository guestRepository;
-    private final ReservationRepository reservationRepository;
-
     public UUID search(String email){
         Optional<Guest> guestOptional = guestRepository.findGuestByEmail(email);
         if (guestOptional.isPresent()) {

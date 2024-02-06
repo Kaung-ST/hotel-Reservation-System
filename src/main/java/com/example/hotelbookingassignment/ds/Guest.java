@@ -1,7 +1,9 @@
 package com.example.hotelbookingassignment.ds;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
+import org.springframework.validation.annotation.Validated;
 
 
 import java.util.HashSet;
@@ -17,7 +19,9 @@ public class Guest {
     @Id
     @GeneratedValue
     private UUID id;
+    @NotBlank(message = "First name is mandatory")
     private String firstName;
+    @NotBlank(message = "Last name is mandatory")
     private String lastName;
     private String email;
     private String password;
